@@ -1,0 +1,27 @@
+
+
+footer {
+  text-align: center;
+  background: #000;
+  padding: 2rem;
+}
+footer p {
+  color: black;
+  font-size: 2em;
+}
+footer .column.full p {
+  font-size: 1em;
+}
+footer .column.full p a {
+  color: white;
+}
+
+footer section.download {
+  padding-bottom: 2rem;
+}
+.no-touch footer button:hover {
+  color: #20354a;
+  -moz-box-shadow: 0 20px 30px -17px #290000;
+  -webkit-box-shadow: 0 20px 30px -17px #290000;
+  box-shadow: 0 20px 30px -17px #290000;
+}
