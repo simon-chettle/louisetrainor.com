@@ -30,13 +30,26 @@ $('.container').isotope();
 			alert('please enter a message');
 			return false;
 		}
-		var data = $(this).serialize();
-		var jqxhr = $.post('mail.php', data, function() {
-			$('#emailForm').replaceWith('<p class="bg-success">Thanks for getting in touch! <br /> I will try and get back to you as soon as I can.<p>');
-		})
-		.fail(function() {
-			$('#emailForm').replaceWith('<p class="bg-error">Sorry! Something went wrong. Please refresh the page and try again.<p>');
-		});
+		var data = {
+			name: $('#inputName').val(),
+			email: $('#inputEmail').val(),
+			message: $('#inputMessage').val(),
+		}
+
+        $.ajax({
+            type: "POST",
+            url: 'https://la64j4k0z9.execute-api.eu-west-1.amazonaws.com/production/louisetrainor-send-email',
+            // The key needs to match your method's input parameter (case-sensitive).
+            data: JSON.stringify(data),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data){
+                $('#emailForm').replaceWith('<p class="bg-success">Thanks for getting in touch! <br /> I will try and get back to you as soon as I can.<p>');
+			},
+            failure: function(errMsg) {
+                $('#emailForm').replaceWith('<p class="bg-error">Sorry! Something went wrong. Please refresh the page and try again.<p>');
+            }
+        });
 	
 		return false;
 	});
